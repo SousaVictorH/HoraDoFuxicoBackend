@@ -1,6 +1,6 @@
 require('dotenv').config()
 
-// const mongoConnection = require('./databases/connection/mongoAtlas')
+const mongoConnection = require('./databases/connection/mongoAtlas')
 
 const express = require('express')
 const cors = require('cors')
