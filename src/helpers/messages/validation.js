@@ -5,5 +5,6 @@ module.exports = {
   invalidBirthDate: 'invalid birth date',
   shouldBeAdult: 'Você deve ter 18 anos ou mais',
   invalidPhone: 'invalid phone number',
-  phoneRequired: 'phone number is required'
+  phoneRequired: 'phone number is required',
+  verificationMiddlewares: 'verification middlewares'
 }

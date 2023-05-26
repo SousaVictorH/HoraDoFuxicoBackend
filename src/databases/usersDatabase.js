@@ -19,7 +19,7 @@ const create = async (user) => {
   }
 }
 
-const read = async (filters = { id, phoneNumber }) => {
+const findOne = async (filters = { id, phoneNumber }) => {
   try {
     objects.removeUndefinedParams(filters)
 
@@ -31,5 +31,5 @@ const read = async (filters = { id, phoneNumber }) => {
 
 module.exports = {
   create,
-  read
+  findOne
 }

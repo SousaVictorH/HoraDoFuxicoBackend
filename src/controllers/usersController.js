@@ -1,5 +1,5 @@
 const { UserModel } = require('../domain/models/index')
-const userService = require('../services/userService')
+const { create } = require('../services/UserService')
 
 module.exports = {
   async login(req, res) {
@@ -11,7 +11,7 @@ module.exports = {
 
       const User = UserModel(UserData)
 
-      const CreatedUser = await userService.create(User)
+      const CreatedUser = await create(User)
 
       return res.status(201).json({
         ...CreatedUser

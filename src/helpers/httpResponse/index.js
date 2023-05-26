@@ -1,9 +1,9 @@
-const notFound = require('./notFound')
-const serverError = require('./serverError')
-const badRequest = require('./badRequest')
+const NotFound = require('./notFound')
+const ServerError = require('./serverError')
+const BadRequest = require('./badRequest')
 
 module.exports = {
-  notFound,
-  serverError,
-  badRequest
+  NotFound,
+  ServerError,
+  BadRequest
 }

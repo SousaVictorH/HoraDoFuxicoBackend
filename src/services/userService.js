@@ -1,18 +1,18 @@
-const usersDatabase = require('../databases/usersDatabase')
+const UsersDatabase = require('../databases/UsersDatabase')
 
-const { badRequest } = require('../helpers/httpResponse')
+const { BadRequest } = require('../helpers/httpResponse')
 
 const { userAlreadyExist } = require('../helpers/messages')
 
 const source = 'Users Service - createUser'
 
 const create = async (user) => {
-  if (await usersDatabase.read({ phoneNumber: user.phoneNumber })) {
+  if (await UsersDatabase.findOne({ phoneNumber: user.phoneNumber })) {
     // If user already exist throw bad request error
-    throw badRequest({ source, message: userAlreadyExist })
+    throw BadRequest({ source, message: userAlreadyExist })
   }
 
-  return await usersDatabase.create(user)
+  return await UsersDatabase.create(user)
 }
 
 module.exports = {
