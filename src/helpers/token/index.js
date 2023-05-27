@@ -2,28 +2,21 @@ require('dotenv').config()
 
 const jwt = require('jsonwebtoken')
 
+const secretKey = process.env.SECRET_KEY
+
 const generateToken = ({ userId }) => {
-  const payload = { userId }
-  const secretKey = process.env.SECRET_KEY
-  const options = { expiresIn: '1h' }
+  const payload = { id: userId }
 
-  const token = jwt.sign(payload, secretKey, options)
+  const options = { expiresIn: 86400 }
 
-  return token
+  return jwt.sign(payload, secretKey, options)
 }
 
 const verifyToken = ({ token }) => {
   try {
-    const secretKey = process.env.SECRET_KEY
-
-    const decoded = jwt.verify(token, secretKey)
-
-    console.log(decoded)
-
-    return true
+    return jwt.verify(token, secretKey)
   } catch (error) {
-    // Invalid token
-    return false
+    return null
   }
 }
 

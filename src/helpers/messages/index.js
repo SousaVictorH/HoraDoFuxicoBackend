@@ -9,5 +9,6 @@ module.exports = {
   // emailMalformed: `Email malformed`,
   dataMalformed: `Data malformed`,
   unauthorized: `Unauthorized`,
-  // noToken: `No token provided`,
+  noTokenProvided: `No token provided`,
+  invalidToken: 'Invalid token'
 }
