@@ -6,5 +6,7 @@ module.exports = {
   shouldBeAdult: 'Você deve ter 18 anos ou mais',
   invalidPhone: 'invalid phone number',
   phoneRequired: 'phone number is required',
-  verificationMiddlewares: 'verification middlewares'
+  verificationMiddlewares: 'verification middlewares',
+  invalidToken: 'invalid token',
+  tokenRequired: 'token in required',
 }

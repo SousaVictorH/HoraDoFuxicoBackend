@@ -1,5 +1,6 @@
 const User = ({
   id,
+  _id,
   name,
   dateOfBirth,
   phoneNumber,
@@ -8,7 +9,7 @@ const User = ({
   const defaultAvatar = 'https://www.seekpng.com/png/detail/115-1150053_avatar-png-transparent-png-royalty-free-default-user.png';
 
   return {
-    id,
+    id: id || _id,
     name,
     dateOfBirth,
     phoneNumber,

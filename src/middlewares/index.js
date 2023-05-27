@@ -3,7 +3,7 @@ const { verificationMiddlewares } = require('../helpers/messages/validation')
 function validateMiddleware(schema) {
   return async (req, res, next) => {
     try {
-      // Valida os dados da requisição com o schema fornecido
+      // Validate schema
       await schema.validate(req.body, { abortEarly: false });
       next();
     } catch (error) {

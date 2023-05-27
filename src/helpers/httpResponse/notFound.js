@@ -1,8 +1,8 @@
-const NotFound = (source, entity) => {
+const NotFound = ({ source, message }) => {
   throw {
     error: {
       source,
-      message: entity + ' not found',
+      message,
       statusCode: 404
     }
   }

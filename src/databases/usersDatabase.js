@@ -1,10 +1,11 @@
 const Users = require('./models/Users')
 const { UserModel } = require('../domain/models/index')
 
-const { serverError } = require('../helpers/httpResponse')
+const { ServerError } = require('../helpers/httpResponse')
 const {
   failedToCreateUser,
-  failedToReadUser
+  failedToReadUser,
+  failedToUpdateUser
 } = require('../helpers/messages')
 
 const { objects } = require('../utils/index')
@@ -15,21 +16,35 @@ const create = async (user) => {
   try {
     return UserModel(await Users.create(user))
   } catch (error) {
-    throw serverError(source, failedToCreateUser)
+    throw ServerError({ source, message: failedToCreateUser })
   }
 }
 
-const findOne = async (filters = { id, phoneNumber }) => {
+const findOne = async (filters) => {
   try {
     objects.removeUndefinedParams(filters)
 
     return await Users.findOne(filters)
   } catch (error) {
-    throw serverError(source, failedToReadUser)
+    throw ServerError({ source, message: failedToReadUser })
+  }
+}
+
+const update = async (filters, userData) => {
+  try {
+    objects.removeUndefinedParams(filters)
+
+    await Users.updateOne(filters, {
+      ...userData,
+      updated: Date.now()
+    })
+  } catch (error) {
+    throw ServerError({ source, message: failedToUpdateUser })
   }
 }
 
 module.exports = {
   create,
-  findOne
+  findOne,
+  update
 }

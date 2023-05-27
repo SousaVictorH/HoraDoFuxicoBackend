@@ -1,8 +1,8 @@
-const ServerError = (source, message) => {
+const ServerError = ({ source, message }) => {
   throw {
     error: {
       source: source,
-      message: 'internal error ' + message,
+      message: 'internal error - ' + message,
       statusCode: 500
     }
   }

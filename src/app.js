@@ -13,11 +13,11 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use(router)
 
-const port = process.env.PORT || 8000;
+const port = process.env.PORT
 
 app.listen(port, () => {
   try {

@@ -3,8 +3,8 @@ const router = require('express').Router()
 const UsersController = require('../../controllers/UsersController')
 
 const validateMiddleware = require('../../middlewares')
-const loginSchema = require('../../middlewares/login')
+const updateSchema = require('../../middlewares/update')
 
-router.post('/', validateMiddleware(loginSchema), UsersController.login)
+router.put('/:id', validateMiddleware(updateSchema), UsersController.update)
 
 module.exports = router
