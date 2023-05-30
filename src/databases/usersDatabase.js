@@ -1,5 +1,5 @@
-const Users = require('./models/Users')
-const { UserModel } = require('../domain/models/index')
+const { Users } = require('./models')
+const { UserModel } = require('../domain/models')
 
 const { ServerError } = require('../helpers/httpResponse')
 const {
@@ -10,7 +10,7 @@ const {
 
 const { objects } = require('../utils/index')
 
-const source = 'Users Database - createUser'
+const source = 'Users Database'
 
 const create = async (user) => {
   try {

@@ -7,7 +7,7 @@ const secretKey = process.env.SECRET_KEY
 const generateToken = ({ userId }) => {
   const payload = { id: userId }
 
-  const options = { expiresIn: 86400 }
+  const options = { expiresIn: 43200 } // Expires in 12 hours
 
   return jwt.sign(payload, secretKey, options)
 }

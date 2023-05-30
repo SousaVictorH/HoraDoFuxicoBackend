@@ -1,6 +1,7 @@
 const SignUp = require('../domain/useCases/SignUp')
 const Login = require('../domain/useCases/Login')
 const Update = require('../domain/useCases/Update')
+const RequestLogin = require('../domain/useCases/RequestLogin')
 
 module.exports = {
   async login(req, res) {
@@ -12,6 +13,19 @@ module.exports = {
       return res.status(200).json({
         ...UserData
       })
+    } catch (error) {
+      const { statusCode } = error.error
+
+      return res.status(statusCode).json(error)
+    }
+  },
+  async requestLogin(req, res) {
+    try {
+      const { phoneNumber } = req.params
+
+      await RequestLogin({ phoneNumber })
+
+      return res.status(204).json()
     } catch (error) {
       const { statusCode } = error.error
 

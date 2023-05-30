@@ -10,5 +10,7 @@ module.exports = {
   dataMalformed: `Data malformed`,
   unauthorized: `Unauthorized`,
   noTokenProvided: `No token provided`,
-  invalidToken: 'Invalid token'
+  invalidToken: 'Invalid token',
+  failedToCreateToken: 'Failed to create new token',
+  failedToReadToken: 'Failed to react tokens'
 }

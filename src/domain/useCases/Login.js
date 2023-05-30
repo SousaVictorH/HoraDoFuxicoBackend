@@ -1,9 +1,12 @@
+const moment = require('moment')
+
 const UserService = require('../../services/UserService')
+const TokenService = require('../../services/TokenService')
 
 const { UserModel } = require('../../domain/models')
 
 const { NotFound, Unauthorized } = require('../../helpers/httpResponse')
-const { userNotFound, unauthorized } = require('../../helpers/messages')
+const { userNotFound, unauthorized, invalidToken } = require('../../helpers/messages')
 
 const { generateToken } = require('../../helpers/token')
 
@@ -17,18 +20,22 @@ const Login = async ({ phoneNumber, token }) => {
     throw NotFound({ source, message: userNotFound })
   }
 
-  if (token !== '123456') {
-    // Invalid Token
+  const tokenData = await TokenService.findOne({ userId: user.id })
+
+  if (!tokenData || moment().isAfter(token.expiration)) {
     throw Unauthorized({ source, message: unauthorized })
+  }
+
+  // validate token
+  if (token !== tokenData.token) {
+    throw Unauthorized({ source, message: invalidToken })
   }
 
   const User = UserModel(user)
 
   return {
     token: generateToken({ userId: User.id }),
-    userData: {
-      ...User
-    }
+    ...User
   }
 }
 
