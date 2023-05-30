@@ -1,3 +1,5 @@
+const moment = require('moment')
+
 const UserService = require('../../services/UserService')
 
 const { UserModel } = require('../models')
@@ -22,7 +24,10 @@ const Update = async ({ id, userData }) => {
     throw NotFound({ source, message: userNotFound })
   }
 
-  const User = UserModel({ ...userData })
+  const User = UserModel({
+    ...userData,
+    dateOfBirth: moment(userData.dateOfBirth, 'DD/MM/YYYY')
+  })
 
   await UserService.update({ _id: id }, User)
 

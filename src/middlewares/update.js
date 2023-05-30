@@ -1,4 +1,5 @@
 const yup = require('yup')
+const moment = require('moment')
 
 const {
   nameRequired,
@@ -17,19 +18,15 @@ const schema = yup.object().shape({
     required(birthDateRequired).
     test('date test', shouldBeAdult, function (value) {
       try {
-        const parts = value.split("/")
+        const dataAtual = moment()
+        const dataNascimento = moment(value, 'DD/MM/YYYY')
 
-        const today = new Date()
-        const birthDate = new Date(`${parts[2]}-${parts[1]}-${parts[0]}`)
+        if (
+          !dataNascimento.isValid() ||
+          dataAtual.diff(dataNascimento, 'years') < 18
+        ) return false
 
-        let age = today.getFullYear() - birthDate.getFullYear()
-        const monthDiff = today.getMonth() - birthDate.getMonth()
-
-        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
-          age--
-        }
-
-        return age >= 18
+        return true
       } catch (error) {
         throw { message: invalidBirthDate }
       }
