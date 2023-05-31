@@ -20,7 +20,11 @@ const SignUp = async (user) => {
     throw NotFound({ source, message: userAlreadyExist })
   }
 
-  return UserModel(await UserService.create(User))
+  const data = UserModel(await UserService.create(User))
+
+  delete data.id
+
+  return data
 }
 
 module.exports = SignUp

@@ -12,5 +12,6 @@ module.exports = {
   noTokenProvided: `No token provided`,
   invalidToken: 'Invalid token',
   failedToCreateToken: 'Failed to create new token',
-  failedToReadToken: 'Failed to react tokens'
+  failedToReadToken: 'Failed to react tokens',
+  failedToSendSMS: 'Failed to send SMS'
 }

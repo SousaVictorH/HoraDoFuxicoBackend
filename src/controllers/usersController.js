@@ -1,7 +1,9 @@
-const SignUp = require('../domain/useCases/SignUp')
-const Login = require('../domain/useCases/Login')
-const Update = require('../domain/useCases/Update')
-const RequestLogin = require('../domain/useCases/RequestLogin')
+const {
+  Login,
+  RequestLogin,
+  Update,
+  SignUp
+} = require('../domain/useCases')
 
 module.exports = {
   async login(req, res) {

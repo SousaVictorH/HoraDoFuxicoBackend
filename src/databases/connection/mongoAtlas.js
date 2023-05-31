@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
-const { mongoConfig } = require('../../resources');
-const { url, options } = mongoConfig;
+const { mongoConfig } = require('../../resources')
+const { url, options } = mongoConfig
 
 mongoose.connect(url, options);
 
@@ -16,7 +16,7 @@ try {
     console.log('MongoDB Connected!')
   })
 } catch (error) {
-  throw error;
+  throw error
 }
 
 module.exports = mongoDB

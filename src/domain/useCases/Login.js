@@ -31,6 +31,8 @@ const Login = async ({ phoneNumber, token }) => {
     throw Unauthorized({ source, message: invalidToken })
   }
 
+  await TokenService.deleteOne({ _id: tokenData.id })
+
   const User = UserModel(user)
 
   return {

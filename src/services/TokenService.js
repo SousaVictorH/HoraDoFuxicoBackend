@@ -8,7 +8,7 @@ const findOne = async (filters = { userId }) => {
   return await TokensDatabase.findOne(filters)
 }
 
-const deleteOne = async (filters = { userId }) => {
+const deleteOne = async (filters = { _id }) => {
   return await TokensDatabase.deleteOne(filters)
 }
 
