@@ -2,6 +2,8 @@ const moment = require('moment')
 
 const UserService = require('../../services/UserService')
 
+const Login = require('./Login')
+
 const { UserModel } = require('../../domain/models')
 
 const { NotFound } = require('../../helpers/httpResponse')
@@ -20,11 +22,9 @@ const SignUp = async (user) => {
     throw NotFound({ source, message: userAlreadyExist })
   }
 
-  const data = UserModel(await UserService.create(User))
+  const { phoneNumber } = UserModel(await UserService.create(User))
 
-  delete data.id
-
-  return data
+  return Login({ phoneNumber, token: null, authorized: true })
 }
 
 module.exports = SignUp

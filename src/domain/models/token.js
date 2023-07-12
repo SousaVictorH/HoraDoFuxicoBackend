@@ -1,14 +1,14 @@
 const moment = require('moment')
 
 const Token = ({
-  userId,
+  phoneNumber,
   token,
   expiration
 }) => {
   const defaultExpiration = moment().add(15, 'minutes').toDate()
 
   return {
-    userId,
+    phoneNumber,
     token,
     expiration: expiration || defaultExpiration
   }

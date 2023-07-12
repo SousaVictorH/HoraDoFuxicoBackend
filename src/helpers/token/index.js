@@ -2,8 +2,8 @@ const jwt = require('jsonwebtoken')
 
 const secretKey = process.env.SECRET_KEY
 
-const generateToken = ({ userId }) => {
-  const payload = { id: userId }
+const generateToken = ({ phoneNumber }) => {
+  const payload = { phoneNumber }
 
   const options = { expiresIn: 43200 } // Expires in 12 hours
 
