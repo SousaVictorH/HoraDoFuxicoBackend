@@ -13,7 +13,7 @@ const {
 
 const schema = yup.object().shape({
   name: yup.string().min(3, invalidName).required(nameRequired),
-  dateOfBirth: yup.
+  birthDate: yup.
     string().
     required(birthDateRequired).
     test('date test', shouldBeAdult, function (value) {

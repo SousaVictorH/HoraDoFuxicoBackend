@@ -14,7 +14,7 @@ const source = 'Sign Up - Use Case'
 const SignUp = async (user) => {
   const User = UserModel({
     ...user,
-    dateOfBirth: moment(user.dateOfBirth, 'DD/MM/YYYY')
+    birthDate: moment(user.birthDate, 'DD/MM/YYYY')
   })
 
   if (await UserService.findOne({ phoneNumber: User.phoneNumber })) {

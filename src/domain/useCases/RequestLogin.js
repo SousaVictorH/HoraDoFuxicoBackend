@@ -1,5 +1,7 @@
 const TokenService = require('../../services/TokenService')
 
+const { token: { generateToken } } = require('../../utils')
+
 const { TokenModel } = require('../models')
 
 const RequestLogin = async ({ phoneNumber }) => {
@@ -8,12 +10,14 @@ const RequestLogin = async ({ phoneNumber }) => {
     await TokenService.deleteOne({ phoneNumber })
   }
 
-  const token = TokenModel({
-    token: (Math.floor(Math.random() * 1000000) + 1000000).toString().substring(1),
+  const token = generateToken()
+
+  const Token = TokenModel({
+    token,
     phoneNumber
   })
 
-  await TokenService.create(token)
+  await TokenService.create(Token)
 }
 
 module.exports = RequestLogin

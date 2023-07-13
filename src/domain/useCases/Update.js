@@ -26,15 +26,12 @@ const Update = async ({ id, userData }) => {
 
   const User = UserModel({
     ...userData,
-    dateOfBirth: moment(userData.dateOfBirth, 'DD/MM/YYYY')
+    birthDate: moment(userData.birthDate, 'DD/MM/YYYY')
   })
 
   await UserService.update({ _id: id }, User)
 
-  return {
-    ...User,
-    id
-  }
+  return User
 }
 
 module.exports = Update

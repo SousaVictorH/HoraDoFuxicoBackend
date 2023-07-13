@@ -2,7 +2,7 @@ const User = ({
   id,
   _id,
   name,
-  dateOfBirth,
+  birthDate,
   phoneNumber,
   avatar,
 }) => {
@@ -11,7 +11,7 @@ const User = ({
   return {
     id: id || _id,
     name,
-    dateOfBirth,
+    birthDate,
     phoneNumber,
     avatar: avatar || defaultAvatar,
   }
