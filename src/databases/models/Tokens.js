@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const Token = new mongoose.Schema({
   phoneNumber: { type: String, required: true, unique: true },
-  token: { type: String, required: true, minlength: 6, maxlength: 6 },
+  token: { type: String, required: true },
   expiration: { type: Date, required: true },
 })
 

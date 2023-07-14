@@ -5,8 +5,10 @@ const TokenService = require('../../services/TokenService')
 
 const { UserModel } = require('../../domain/models')
 
-const { Unauthorized } = require('../../helpers/httpResponse')
-const { unauthorized, invalidToken } = require('../../helpers/messages')
+const { encrypter: { compare } } = require('../../utils')
+
+const { Unauthorized, NotFound } = require('../../helpers/httpResponse')
+const { unauthorized, invalidToken, userNotFound } = require('../../helpers/messages')
 
 const { generateToken } = require('../../helpers/token')
 
@@ -21,7 +23,7 @@ const Login = async ({ phoneNumber, token, authorized = false }) => {
     }
 
     // validate token
-    if (token !== tokenData.token) {
+    if (! await compare(token, tokenData.token)) {
       throw Unauthorized({ source, message: invalidToken })
     }
 
@@ -30,7 +32,9 @@ const Login = async ({ phoneNumber, token, authorized = false }) => {
 
   const user = await UserService.findOne({ phoneNumber })
 
-  if (!user) return {}
+  if (!user) {
+    throw NotFound({ source, message: userNotFound })
+  }
 
   const User = UserModel(user)
 

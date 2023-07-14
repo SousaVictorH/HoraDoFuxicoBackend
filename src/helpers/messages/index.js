@@ -13,5 +13,7 @@ module.exports = {
   invalidToken: 'Invalid token',
   failedToCreateToken: 'Failed to create new token',
   failedToReadToken: 'Failed to react tokens',
-  failedToSendSMS: 'Failed to send SMS'
+  failedToSendSMS: 'Failed to send SMS',
+  accessToken: 'Seu token de acesso',
+  getAccessTokenText: (token) => `Seu token de acesso é ${token}`
 }

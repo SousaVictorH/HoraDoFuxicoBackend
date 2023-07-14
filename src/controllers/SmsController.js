@@ -1,4 +1,3 @@
-
 const { SendSMS } = require('../domain/useCases');
 
 const { ServerError } = require('../helpers/httpResponse');
