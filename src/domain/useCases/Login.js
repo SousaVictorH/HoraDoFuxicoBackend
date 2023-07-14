@@ -18,7 +18,7 @@ const Login = async ({ phoneNumber, token, authorized = false }) => {
   if (!authorized) {
     const tokenData = await TokenService.findOne({ phoneNumber })
 
-    if (!tokenData || moment().isAfter(token.expiration)) {
+    if (!tokenData || moment().isAfter(tokenData.expiration)) {
       // expired token
       throw Forbidden({ source, message: unauthorized })
     }
