@@ -7,7 +7,7 @@ const { UserModel } = require('../../domain/models')
 
 const { encrypter: { compare } } = require('../../utils')
 
-const { Unauthorized, NotFound } = require('../../helpers/httpResponse')
+const { Unauthorized, NotFound, Forbidden } = require('../../helpers/httpResponse')
 const { unauthorized, invalidToken, userNotFound } = require('../../helpers/messages')
 
 const { generateToken } = require('../../helpers/token')
@@ -19,7 +19,8 @@ const Login = async ({ phoneNumber, token, authorized = false }) => {
     const tokenData = await TokenService.findOne({ phoneNumber })
 
     if (!tokenData || moment().isAfter(token.expiration)) {
-      throw Unauthorized({ source, message: unauthorized })
+      // expired token
+      throw Forbidden({ source, message: unauthorized })
     }
 
     // validate token
