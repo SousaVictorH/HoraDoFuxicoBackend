@@ -1,4 +1,4 @@
-const { Unauthorized } = require('../helpers/httpResponse')
+const { Forbidden } = require('../helpers/httpResponse')
 const { noTokenProvided, invalidToken } = require('../helpers/messages')
 
 const { verifyToken } = require('../helpers/token')
@@ -29,14 +29,14 @@ module.exports = {
 
       if (!token) {
         // No token provided
-        throw Unauthorized({ source: verificationMiddlewares, message: noTokenProvided })
+        throw Forbidden({ source: verificationMiddlewares, message: noTokenProvided })
       }
 
       const data = verifyToken({ token })
 
       if (!data) {
         // Invalid token
-        throw Unauthorized({ source: verificationMiddlewares, message: invalidToken })
+        throw Forbidden({ source: verificationMiddlewares, message: invalidToken })
       }
 
       next()
