@@ -33,7 +33,9 @@ const Login = async ({ phoneNumber, token, authorized = false }) => {
 
   const user = await UserService.findOne({ phoneNumber })
 
-  if (!user) return {}
+  if (!user) return {
+    token: generateToken({ phoneNumber })
+  }
 
   const User = UserModel(user)
 

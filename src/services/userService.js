@@ -12,8 +12,13 @@ const update = async (filters = { _id, phoneNumber }, userData) => {
   await UsersDatabase.update(filters, userData)
 }
 
+const findAll = async ({ page, limit, search }) => {
+  return await UsersDatabase.findAll({ page, limit, search })
+}
+
 module.exports = {
   create,
   findOne,
-  update
+  update,
+  findAll
 }

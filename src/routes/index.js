@@ -3,6 +3,7 @@ const router = require('express').Router()
 const singup = require('./signup')
 const login = require('./login')
 const user = require('./user')
+const users = require('./users')
 
 // RETURNS API VERSION
 router.get('/', (_, res) => {
@@ -12,5 +13,6 @@ router.get('/', (_, res) => {
 router.use('/signup', singup)
 router.use('/login', login)
 router.use('/user', user)
+router.use('/users', users)
 
 module.exports = router

@@ -32,9 +32,9 @@ module.exports = {
         throw Forbidden({ source: verificationMiddlewares, message: noTokenProvided })
       }
 
-      const data = verifyToken({ token })
+      const verified = verifyToken({ token })
 
-      if (!data) {
+      if (!verified) {
         // Invalid token
         throw Forbidden({ source: verificationMiddlewares, message: invalidToken })
       }

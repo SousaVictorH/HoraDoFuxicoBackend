@@ -43,8 +43,29 @@ const update = async (filters, userData) => {
   }
 }
 
+const findAll = async ({ page, limit, search }) => {
+  try {
+    const users = await Users.find({ name: { $regex: search, $options: "i" } })
+      .sort({ _id: -1 })
+      .skip(page * limit)
+      .limit(limit)
+
+    const total = await Users.countDocuments({
+      name: { $regex: search, $options: "i" }
+    })
+
+    return {
+      users,
+      total
+    }
+  } catch (error) {
+    throw ServerError({ source, message: failedToUpdateUser })
+  }
+}
+
 module.exports = {
   create,
   findOne,
-  update
+  update,
+  findAll
 }

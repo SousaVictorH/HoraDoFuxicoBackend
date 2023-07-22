@@ -2,7 +2,8 @@ const {
   Login,
   RequestLogin,
   Update,
-  SignUp
+  SignUp,
+  FindAll
 } = require('../domain/useCases')
 
 module.exports = {
@@ -57,6 +58,17 @@ module.exports = {
       const user = await Update({ id, userData })
 
       return res.status(200).json({ ...user })
+    } catch (error) {
+      const { statusCode } = error.error
+
+      return res.status(statusCode).json(error)
+    }
+  },
+  async find(req, res) {
+    try {
+      const { page, limit, search } = req.query
+
+      return res.status(200).json(await FindAll({ page, limit, search }))
     } catch (error) {
       const { statusCode } = error.error
 
