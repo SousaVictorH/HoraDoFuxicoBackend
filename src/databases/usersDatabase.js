@@ -47,7 +47,7 @@ const findAll = async ({ page, limit, search }) => {
   try {
     const users = await Users.find({ name: { $regex: search, $options: "i" } })
       .sort({ _id: -1 })
-      .skip(page * limit)
+      .skip((page - 1) * limit)
       .limit(limit)
 
     const total = await Users.countDocuments({
