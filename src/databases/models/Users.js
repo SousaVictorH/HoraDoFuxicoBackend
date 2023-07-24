@@ -7,8 +7,8 @@ const User = new mongoose.Schema({
   phoneNumber: { type: String, required: true, unique: true },
   avatar: { type: String },
 
-  created: { type: Date, default: moment() },
-  updated: { type: Date, default: moment() },
+  createdAt: { type: Date, default: moment() },
+  updatedAt: { type: Date, default: moment() },
 });
 
 module.exports = mongoose.model('Users', User)

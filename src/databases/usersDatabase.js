@@ -36,7 +36,7 @@ const update = async (filters, userData) => {
 
     await Users.updateOne(filters, {
       ...userData,
-      updated: Date.now()
+      updatedAt: Date.now()
     })
   } catch (error) {
     throw ServerError({ source, message: failedToUpdateUser })
