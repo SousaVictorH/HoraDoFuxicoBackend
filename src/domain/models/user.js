@@ -10,7 +10,7 @@ const User = ({
   name,
   birthDate,
   phoneNumber,
-  avatar,
+  avatar
 })
 
 module.exports = User

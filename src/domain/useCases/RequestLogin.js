@@ -6,7 +6,6 @@ const {
   encrypter: { encrypt }
 } = require('../../utils')
 
-const { TokenModel } = require('../models')
 const { accessToken, getAccessTokenText } = require('../../helpers/messages')
 
 const RequestLogin = async ({ phoneNumber }) => {
@@ -24,12 +23,10 @@ const RequestLogin = async ({ phoneNumber }) => {
     text: getAccessTokenText(token)
   })
 
-  const Token = TokenModel({
+  await TokenService.create({
     token: await encrypt(token),
     phoneNumber
   })
-
-  await TokenService.create(Token)
 }
 
 module.exports = RequestLogin

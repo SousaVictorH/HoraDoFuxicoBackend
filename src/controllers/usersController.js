@@ -11,11 +11,7 @@ module.exports = {
     try {
       const { phoneNumber, token } = req.body
 
-      const UserData = await Login({ phoneNumber, token })
-
-      return res.status(200).json({
-        ...UserData
-      })
+      return res.status(200).json(await Login({ phoneNumber, token }))
     } catch (error) {
       const { statusCode } = error.error
 
@@ -44,11 +40,7 @@ module.exports = {
         avatar,
       } = req.body
 
-      const CreatedUser = await SignUp({ name, birthDate, phoneNumber, avatar })
-
-      return res.status(201).json({
-        ...CreatedUser
-      })
+      return res.status(201).json(await SignUp({ name, birthDate, phoneNumber, avatar }))
     } catch (error) {
       const { statusCode } = error.error
 
@@ -67,7 +59,7 @@ module.exports = {
 
       const user = await Update({ id, userData: { name, birthDate, phoneNumber, avatar } })
 
-      return res.status(200).json({ ...user })
+      return res.status(200).json(user)
     } catch (error) {
       const { statusCode } = error.error
 

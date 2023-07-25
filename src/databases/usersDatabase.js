@@ -1,5 +1,4 @@
 const { Users } = require('./models')
-const { UserModel } = require('../domain/models')
 
 const { ServerError } = require('../helpers/httpResponse')
 const {
@@ -14,7 +13,7 @@ const source = 'Users Database'
 
 const create = async (user) => {
   try {
-    return UserModel(await Users.create(user))
+    return await Users.create(user)
   } catch (error) {
     throw ServerError({ source, message: failedToCreateUser })
   }
@@ -34,10 +33,10 @@ const update = async (filters, userData) => {
   try {
     objects.removeUndefinedParams(filters)
 
-    await Users.updateOne(filters, {
+    return await Users.findOneAndUpdate(filters, {
       ...userData,
       updatedAt: Date.now()
-    })
+    }, { returnDocument: 'after' })
   } catch (error) {
     throw ServerError({ source, message: failedToUpdateUser })
   }

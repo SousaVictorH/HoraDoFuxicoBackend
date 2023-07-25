@@ -3,8 +3,6 @@ const moment = require('moment')
 const UserService = require('../../services/UserService')
 const TokenService = require('../../services/TokenService')
 
-const { UserModel } = require('../../domain/models')
-
 const { encrypter: { compare } } = require('../../utils')
 
 const { Unauthorized, Forbidden } = require('../../helpers/httpResponse')
@@ -37,11 +35,9 @@ const Login = async ({ phoneNumber, token, authorized = false }) => {
     token: generateToken({ phoneNumber })
   }
 
-  const User = UserModel(user)
-
   return {
     token: generateToken({ phoneNumber }),
-    ...User
+    ...user
   }
 }
 

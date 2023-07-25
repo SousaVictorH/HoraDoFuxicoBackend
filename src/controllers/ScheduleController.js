@@ -12,7 +12,7 @@ module.exports = {
         time
       } = req.body
 
-      const Schedule = await CreateSchedule({ id, category, date, time })
+      const Schedule = await CreateSchedule({ userId: id, category, date, time })
 
       return res.status(200).json({ ...Schedule })
     } catch (error) {

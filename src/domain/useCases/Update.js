@@ -2,8 +2,6 @@ const moment = require('moment')
 
 const UserService = require('../../services/UserService')
 
-const { UserModel } = require('../models')
-
 const { NotFound, BadRequest } = require('../../helpers/httpResponse')
 const { userNotFound, dataMalformed } = require('../../helpers/messages')
 
@@ -24,14 +22,10 @@ const Update = async ({ id, userData }) => {
     throw NotFound({ source, message: userNotFound })
   }
 
-  const User = UserModel({
+  return await UserService.update({ _id: id }, {
     ...userData,
     birthDate: moment(userData.birthDate, 'DD/MM/YYYY')
   })
-
-  await UserService.update({ _id: id }, User)
-
-  return User
 }
 
 module.exports = Update

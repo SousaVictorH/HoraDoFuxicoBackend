@@ -1,5 +1,4 @@
 const { Tokens } = require('./models')
-const { TokenModel } = require('../domain/models')
 
 const { ServerError } = require('../helpers/httpResponse')
 const { failedToCreateToken, failedToReadToken } = require('../helpers/messages')
@@ -10,7 +9,7 @@ const source = 'Tokens Database'
 
 const create = async (data) => {
   try {
-    return TokenModel(await Tokens.create(data))
+    return await Tokens.create(data)
   } catch (error) {
     throw ServerError({ source, message: failedToCreateToken })
   }
@@ -30,7 +29,7 @@ const deleteOne = async (filters) => {
   try {
     objects.removeUndefinedParams(filters)
 
-    return await Tokens.deleteOne(filters)
+    await Tokens.deleteOne(filters)
   } catch (error) {
     throw ServerError({ source, message: failedToReadToken })
   }

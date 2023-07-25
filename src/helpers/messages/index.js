@@ -15,5 +15,6 @@ module.exports = {
   failedToReadToken: 'Failed to react tokens',
   failedToSendSMS: 'Failed to send SMS',
   accessToken: 'Seu token de acesso',
+  failedToCreateSchedule: 'Failed to create schedule',
   getAccessTokenText: (token) => `Seu token de acesso é ${token}`
 }
