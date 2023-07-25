@@ -12,18 +12,18 @@ const {
 } = require('../helpers/messages/validation')
 
 const schema = yup.object().shape({
-  name: yup.string().min(3, invalidName).required(nameRequired),
+  name: yup.string().required(nameRequired).min(3, invalidName),
   birthDate: yup.
     string().
     required(birthDateRequired).
     test('date test', shouldBeAdult, function (value) {
       try {
-        const dataAtual = moment()
-        const dataNascimento = moment(value, 'DD/MM/YYYY')
+        const currentDate = moment()
+        const birthDate = moment(value, 'DD/MM/YYYY')
 
         if (
-          !dataNascimento.isValid() ||
-          dataAtual.diff(dataNascimento, 'years') < 18
+          !birthDate.isValid() ||
+          currentDate.diff(birthDate, 'years') < 18
         ) return false
 
         return true

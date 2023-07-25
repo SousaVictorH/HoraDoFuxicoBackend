@@ -37,9 +37,14 @@ module.exports = {
   },
   async signUp(req, res) {
     try {
-      const UserData = req.body
+      const {
+        name,
+        birthDate,
+        phoneNumber,
+        avatar,
+      } = req.body
 
-      const CreatedUser = await SignUp(UserData)
+      const CreatedUser = await SignUp({ name, birthDate, phoneNumber, avatar })
 
       return res.status(201).json({
         ...CreatedUser
@@ -53,9 +58,14 @@ module.exports = {
   async update(req, res) {
     try {
       const { id } = req.params
-      const userData = req.body
+      const {
+        name,
+        birthDate,
+        phoneNumber,
+        avatar,
+      } = req.body
 
-      const user = await Update({ id, userData })
+      const user = await Update({ id, userData: { name, birthDate, phoneNumber, avatar } })
 
       return res.status(200).json({ ...user })
     } catch (error) {

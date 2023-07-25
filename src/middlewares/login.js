@@ -8,7 +8,7 @@ const {
 } = require('../helpers/messages/validation')
 
 const schema = yup.object().shape({
-  token: yup.string().length(6, invalidToken).required(tokenRequired),
+  token: yup.string().required(tokenRequired).length(6, invalidToken),
   phoneNumber: yup
     .string()
     .required(phoneRequired)

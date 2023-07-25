@@ -9,4 +9,11 @@ module.exports = {
   verificationMiddlewares: 'verification middlewares',
   invalidToken: 'invalid token',
   tokenRequired: 'token in required',
+  categoryRequired: 'category is required',
+  shouldBeInFuture: 'date should be in future',
+  dateRequired: 'date is required',
+  invalidDate: 'invalid date',
+  timeRequired: 'time is required',
+  invalidTime: 'invalid time',
+  invalidCategory: 'invalid category'
 }
