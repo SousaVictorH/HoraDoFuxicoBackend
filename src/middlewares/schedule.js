@@ -26,13 +26,15 @@ const schema = yup.object().shape({
         const currentDate = moment()
         const date = moment(value, 'DD/MM/YYYY')
 
-        const [hours, minutes] = this.parent.time.split(':')
+        const time = this.parent.time.split(':')
 
-        if (!Number(hours) || !Number(minutes)) return false
+        const hours = Number(time[0])
+        const minutes = Number(time[1])
+
+        if (!(Number(hours) || Number(minutes))) return false
 
         date.add(Number(hours), 'hours')
         date.add(Number(minutes), 'minutes')
-
         if (
           !date.isValid() ||
           !date.isAfter(currentDate.add(30, 'minutes'))
