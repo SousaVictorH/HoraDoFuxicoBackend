@@ -3,8 +3,6 @@ const moment = require('moment')
 const UserService = require('../../services/UserService')
 const ScheduleService = require('../../services/ScheduleService')
 
-const { ScheduleModel } = require('../../domain/models')
-
 const { NotFound, BadRequest } = require('../../helpers/httpResponse')
 const { userNotFound, dataMalformed } = require('../../helpers/messages')
 
@@ -31,13 +29,11 @@ const CreateSchedule = async ({ userId, category, date, time }) => {
   scheduleDate.add(hours, 'hour')
   scheduleDate.add(minutes, 'minutes')
 
-  const Schedule = ScheduleModel({
+  return await ScheduleService.create({
     category,
     date: scheduleDate,
     users: [userId]
   })
-
-  return await ScheduleService.create(Schedule)
 }
 
 module.exports = CreateSchedule
