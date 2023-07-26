@@ -3,8 +3,9 @@ const Login = require('./Login')
 const Update = require('./Update')
 const RequestLogin = require('./RequestLogin')
 const SendSMS = require('./SendSMS')
-const FindAll = require('./FindAll')
+const GetUsers = require('./GetUsers')
 const CreateSchedule = require('./CreateSchedule')
+const GetSchedules = require('./GetSchedules')
 
 module.exports = {
   SignUp,
@@ -12,6 +13,7 @@ module.exports = {
   Update,
   RequestLogin,
   SendSMS,
-  FindAll,
-  CreateSchedule
+  GetUsers,
+  CreateSchedule,
+  GetSchedules
 }

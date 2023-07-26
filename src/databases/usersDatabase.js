@@ -42,10 +42,9 @@ const update = async (filters, userData) => {
   }
 }
 
-const findAll = async ({ page, limit, search }) => {
+const find = async ({ page, limit, search }) => {
   try {
     const users = await Users.find({ name: { $regex: search, $options: "i" } })
-      // .sort({ _id: -1 })
       .skip((page - 1) * limit)
       .limit(limit)
 
@@ -66,5 +65,5 @@ module.exports = {
   create,
   findOne,
   update,
-  findAll
+  find
 }

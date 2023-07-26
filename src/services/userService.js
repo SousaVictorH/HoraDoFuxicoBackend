@@ -22,8 +22,8 @@ const update = async (filters = { _id, phoneNumber }, userData) => {
   return UserModel(await UsersDatabase.update(filters, User))
 }
 
-const findAll = async ({ page, limit, search }) => {
-  const { users, total } = await UsersDatabase.findAll({ page, limit, search })
+const getUsers = async ({ page, limit, search }) => {
+  const { users, total } = await UsersDatabase.find({ page, limit, search })
 
   return {
     users: users.map((user) => UserModel(user)),
@@ -35,5 +35,5 @@ module.exports = {
   create,
   findOne,
   update,
-  findAll
+  getUsers
 }

@@ -15,6 +15,23 @@ const create = async (schedule) => {
   }
 }
 
+const find = async ({ userId, page, limit }) => {
+  const schedules = await Schedules.find({ users: userId })
+    .sort({ _id: -1 })
+    .skip((page - 1) * limit)
+    .limit(limit)
+
+  const total = await Schedules.countDocuments({
+    users: userId
+  })
+
+  return {
+    schedules,
+    total
+  }
+}
+
 module.exports = {
-  create
+  create,
+  find
 }

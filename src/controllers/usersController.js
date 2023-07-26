@@ -3,7 +3,7 @@ const {
   RequestLogin,
   Update,
   SignUp,
-  FindAll
+  GetUsers
 } = require('../domain/useCases')
 
 module.exports = {
@@ -70,7 +70,7 @@ module.exports = {
     try {
       const { page, limit, search } = req.query
 
-      return res.status(200).json(await FindAll({ page, limit, search }))
+      return res.status(200).json(await GetUsers({ page, limit, search }))
     } catch (error) {
       const { statusCode } = error.error
 
