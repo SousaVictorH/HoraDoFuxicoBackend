@@ -31,7 +31,12 @@ const find = async ({ userId, page, limit }) => {
   }
 }
 
+const findAll = async ({ userId }) => {
+  return await Schedules.find({ users: userId }).select(['id'])
+}
+
 module.exports = {
   create,
-  find
+  find,
+  findAll
 }

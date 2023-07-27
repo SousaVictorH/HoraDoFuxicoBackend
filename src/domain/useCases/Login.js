@@ -2,6 +2,7 @@ const moment = require('moment')
 
 const UserService = require('../../services/UserService')
 const TokenService = require('../../services/TokenService')
+const ScheduleService = require('../../services/ScheduleService')
 
 const { encrypter: { compare } } = require('../../utils')
 
@@ -35,8 +36,11 @@ const Login = async ({ phoneNumber, token, authorized = false }) => {
     token: generateToken({ phoneNumber })
   }
 
+  const schedules = await ScheduleService.findAll({ userId: user.id })
+
   return {
     token: generateToken({ phoneNumber }),
+    schedules,
     ...user
   }
 }

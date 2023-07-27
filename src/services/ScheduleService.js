@@ -16,7 +16,20 @@ const find = async ({ userId, page, limit }) => {
   }
 }
 
+const findAll = async ({ userId }) => {
+  const schedules = await SchedulesDatabase.findAll({ userId })
+
+  const schedulesIds = []
+
+  for (item of schedules) {
+    schedulesIds.push(item._id)
+  }
+
+  return schedulesIds
+}
+
 module.exports = {
   create,
-  find
+  find,
+  findAll
 }
