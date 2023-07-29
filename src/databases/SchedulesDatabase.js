@@ -16,7 +16,8 @@ const create = async (schedule) => {
 }
 
 const find = async ({ userId, page, limit }) => {
-  const schedules = await Schedules.find({ users: userId })
+  const schedules = await Schedules
+    .find({ users: userId }, '_id category date')
     .sort({ _id: -1 })
     .skip((page - 1) * limit)
     .limit(limit)
@@ -31,8 +32,12 @@ const find = async ({ userId, page, limit }) => {
   }
 }
 
-const findAll = async ({ userId }) => {
-  return await Schedules.find({ users: userId }).select(['id'])
+const findAll = async ({ userId, select = ['id'] }) => {
+  const filter = {}
+
+  if (userId) filter.users = userId
+
+  return await Schedules.find(filter).select(select)
 }
 
 module.exports = {
