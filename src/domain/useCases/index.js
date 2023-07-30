@@ -1,19 +1,19 @@
 const SignUp = require('./SignUp')
 const Login = require('./Login')
-const Update = require('./Update')
+const UpdateUser = require('./UpdateUser')
 const RequestLogin = require('./RequestLogin')
 const SendSMS = require('./SendSMS')
-const GetUsers = require('./GetUsers')
+const GetUsersPage = require('./GetUsersPage')
 const CreateSchedule = require('./CreateSchedule')
-const GetSchedules = require('./GetSchedules')
+const GetSchedulesPage = require('./GetSchedulesPage')
 
 module.exports = {
   SignUp,
   Login,
-  Update,
+  UpdateUser,
   RequestLogin,
   SendSMS,
-  GetUsers,
+  GetUsersPage,
   CreateSchedule,
-  GetSchedules
+  GetSchedulesPage
 }

@@ -1,35 +1,31 @@
+const moment = require('moment')
+
 const UserService = require('../../services/UserService')
-const ScheduleService = require('../../services/ScheduleService')
 
 const { NotFound, BadRequest } = require('../../helpers/httpResponse')
 const { userNotFound, dataMalformed } = require('../../helpers/messages')
 
 const { id: { validateId } } = require('../../utils')
 
-const source = 'Get Schedules - Use Case'
+const source = 'Update - Use Case'
 
-const GetSchedules = async ({
-  userId,
-  page,
-  limit
-}) => {
-  if (!validateId(userId)) {
+const UpdateUser = async ({ id, userData }) => {
+  if (!validateId(id)) {
     // Invalid Id
     throw BadRequest({ source, message: dataMalformed })
   }
 
-  const user = await UserService.findOne({ _id: userId })
+  const user = await UserService.findOne({ _id: id })
 
   if (!user) {
     // User Not Found
     throw NotFound({ source, message: userNotFound })
   }
 
-  return await ScheduleService.find({
-    userId,
-    page: Number(page) || 1,
-    limit: Number(limit) || 10,
+  return await UserService.update({ _id: id }, {
+    ...userData,
+    birthDate: moment(userData.birthDate, 'DD/MM/YYYY')
   })
 }
 
-module.exports = GetSchedules
+module.exports = UpdateUser

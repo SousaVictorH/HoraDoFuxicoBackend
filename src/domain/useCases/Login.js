@@ -36,11 +36,18 @@ const Login = async ({ phoneNumber, token, authorized = false }) => {
     token: generateToken({ phoneNumber })
   }
 
-  const schedules = await ScheduleService.findAll({ userId: user.id })
+  const schedules = await ScheduleService.find({ userId: user.id })
+
+  const schedulesIds = []
+
+  // For each schedule, push it`s id to list
+  for (item of schedules) {
+    schedulesIds.push(item._id)
+  }
 
   return {
     token: generateToken({ phoneNumber }),
-    schedules,
+    schedules: schedulesIds,
     ...user
   }
 }

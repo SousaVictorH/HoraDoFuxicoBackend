@@ -7,8 +7,12 @@ const create = async (schedule) => {
   return ScheduleModel(await SchedulesDatabase.create(Schedule))
 }
 
-const find = async ({ userId, page, limit }) => {
-  const { schedules, total } = await SchedulesDatabase.find({ userId, page, limit })
+const find = async (filter = { userId }) => {
+  return await SchedulesDatabase.find(filter)
+}
+
+const getPage = async ({ userId, page, limit }) => {
+  const { schedules, total } = await SchedulesDatabase.getPage({ userId, page, limit })
 
   return {
     schedules: schedules.map((schedule) => ScheduleModel(schedule)),
@@ -16,20 +20,8 @@ const find = async ({ userId, page, limit }) => {
   }
 }
 
-const findAll = async ({ userId }) => {
-  const schedules = await SchedulesDatabase.findAll({ userId })
-
-  const schedulesIds = []
-
-  for (item of schedules) {
-    schedulesIds.push(item._id)
-  }
-
-  return schedulesIds
-}
-
 module.exports = {
   create,
   find,
-  findAll
+  getPage
 }

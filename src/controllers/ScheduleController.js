@@ -1,15 +1,21 @@
 const {
   CreateSchedule,
-  GetSchedules
+  GetSchedulesPage
 } = require('../domain/useCases')
 
 module.exports = {
-  async get(req, res) {
+  async getPage(req, res) {
     try {
       const { id } = req.params
       const { page, limit } = req.query
 
-      return res.status(200).json(await GetSchedules({ userId: id, page, limit }))
+      const schedulesPage = await GetSchedulesPage({
+        userId: id,
+        page: Number(page) || 1,
+        limit: Number(limit) || 10
+      })
+
+      return res.status(200).json(schedulesPage)
     } catch (error) {
       const { statusCode } = error.error
 

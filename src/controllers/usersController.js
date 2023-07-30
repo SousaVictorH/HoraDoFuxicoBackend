@@ -1,9 +1,9 @@
 const {
   Login,
   RequestLogin,
-  Update,
+  UpdateUser,
   SignUp,
-  GetUsers
+  GetUsersPage
 } = require('../domain/useCases')
 
 module.exports = {
@@ -57,7 +57,7 @@ module.exports = {
         avatar,
       } = req.body
 
-      const user = await Update({ id, userData: { name, birthDate, phoneNumber, avatar } })
+      const user = await UpdateUser({ id, userData: { name, birthDate, phoneNumber, avatar } })
 
       return res.status(200).json(user)
     } catch (error) {
@@ -66,11 +66,17 @@ module.exports = {
       return res.status(statusCode).json(error)
     }
   },
-  async find(req, res) {
+  async getPage(req, res) {
     try {
       const { page, limit, search } = req.query
 
-      return res.status(200).json(await GetUsers({ page, limit, search }))
+      const usersPage = await GetUsersPage({
+        page: Number(page) || 1,
+        limit: Number(limit) || 10,
+        search: search || ''
+      })
+
+      return res.status(200).json(usersPage)
     } catch (error) {
       const { statusCode } = error.error
 
