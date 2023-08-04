@@ -40,7 +40,6 @@ const Login = async ({ phoneNumber, token, authorized = false }) => {
 
   const schedulesIds = []
 
-  // For each schedule, push it`s id to list
   for (item of schedules) {
     schedulesIds.push(item._id)
   }

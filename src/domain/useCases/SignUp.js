@@ -1,8 +1,7 @@
 const moment = require('moment')
 
 const UserService = require('../../services/UserService')
-
-const Login = require('./Login')
+const ScheduleService = require('../../services/ScheduleService')
 
 const { NotFound } = require('../../helpers/httpResponse')
 const { userAlreadyExist } = require('../../helpers/messages')
@@ -15,12 +14,23 @@ const SignUp = async (userData) => {
     throw NotFound({ source, message: userAlreadyExist })
   }
 
-  const { phoneNumber } = await UserService.create({
+  const user = await UserService.create({
     ...userData,
     birthDate: moment(userData.birthDate, 'DD/MM/YYYY')
   })
 
-  return Login({ phoneNumber, token: null, authorized: true })
+  const schedules = await ScheduleService.find({ userId: user.id })
+
+  const schedulesIds = []
+
+  for (item of schedules) {
+    schedulesIds.push(item._id)
+  }
+
+  return {
+    schedules: schedulesIds,
+    ...user
+  }
 }
 
 module.exports = SignUp

@@ -6,9 +6,6 @@ const User = new mongoose.Schema({
   birthDate: { type: Date, required: true },
   phoneNumber: { type: String, required: true, unique: true },
   avatar: { type: String },
-
-  createdAt: { type: Date, default: moment() },
-  updatedAt: { type: Date, default: moment() },
-});
+}, { timestamps: true })
 
 module.exports = mongoose.model('Users', User)

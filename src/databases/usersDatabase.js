@@ -34,8 +34,7 @@ const update = async (filters, userData) => {
     objects.removeUndefinedParams(filters)
 
     return await Users.findOneAndUpdate(filters, {
-      ...userData,
-      updatedAt: Date.now()
+      ...userData
     }, { returnDocument: 'after' })
   } catch (error) {
     throw ServerError({ source, message: failedToUpdateUser })
