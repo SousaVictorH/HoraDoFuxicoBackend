@@ -6,7 +6,7 @@ const {
   encrypter: { encrypt }
 } = require('../../utils')
 
-const { accessToken, getAccessTokenText } = require('../../helpers/messages')
+const { getAccessTokenText } = require('../../helpers/messages')
 
 const RequestLogin = async ({ phoneNumber }) => {
   if (await TokenService.findOne({ phoneNumber })) {
@@ -19,7 +19,6 @@ const RequestLogin = async ({ phoneNumber }) => {
   // Send sms
   await SendSMS({
     to: phoneNumber,
-    subject: accessToken,
     text: getAccessTokenText(token)
   })
 

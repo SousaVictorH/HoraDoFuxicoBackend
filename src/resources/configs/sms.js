@@ -1,9 +1,9 @@
+const ACCOUNT_SID = process.env.ACCOUNT_SID
+const AUTH_TOKEN = process.env.AUTH_TOKEN
+const PHONE_NUMBER = process.env.PHONE_NUMBER
+
 module.exports = {
-  // host: process.env.EMAIL_HOST,
-  // port: process.env.EMAIL_PORT,
-  // secure: false,
-  // auth: {
-  //   user: process.env.EMAIL_SENDER_EMAIL,
-  //   pass: process.env.EMAIL_PASSWORD_EMAIL,
-  // }
+  ACCOUNT_SID,
+  AUTH_TOKEN,
+  PHONE_NUMBER
 }
