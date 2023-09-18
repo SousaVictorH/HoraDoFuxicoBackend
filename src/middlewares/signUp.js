@@ -3,7 +3,6 @@ const moment = require('moment')
 
 const {
   nameRequired,
-  invalidName,
   birthDateRequired,
   invalidBirthDate,
   invalidPhone,
@@ -12,7 +11,7 @@ const {
 } = require('../helpers/messages/validation')
 
 const schema = yup.object().shape({
-  name: yup.string().required(nameRequired).min(3, invalidName),
+  name: yup.string().required(nameRequired),
   birthDate: yup.
     string().
     required(birthDateRequired).

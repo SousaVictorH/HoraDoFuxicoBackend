@@ -1,4 +1,5 @@
 module.exports = {
+  idRequired: 'id is required',
   nameRequired: 'name is required',
   invalidName: 'invalid name',
   birthDateRequired: 'birth date is required',

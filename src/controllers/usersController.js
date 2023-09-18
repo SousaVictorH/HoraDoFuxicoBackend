@@ -3,7 +3,8 @@ const {
   RequestLogin,
   UpdateUser,
   SignUp,
-  GetUsersPage
+  GetUsersPage,
+  SocialLogin
 } = require('../domain/useCases')
 
 module.exports = {
@@ -34,13 +35,14 @@ module.exports = {
   async signUp(req, res) {
     try {
       const {
+        socialId,
         name,
         birthDate,
         phoneNumber,
-        avatar,
+        avatar
       } = req.body
 
-      return res.status(201).json(await SignUp({ name, birthDate, phoneNumber, avatar }))
+      return res.status(201).json(await SignUp({ socialId, name, birthDate, phoneNumber, avatar }))
     } catch (error) {
       const { statusCode } = error.error
 
@@ -59,7 +61,7 @@ module.exports = {
 
       const user = await UpdateUser({ id, userData: { name, birthDate, phoneNumber, avatar } })
 
-      return res.status(200).json(user)
+      return res.status(204).json(user)
     } catch (error) {
       const { statusCode } = error.error
 
@@ -77,6 +79,21 @@ module.exports = {
       })
 
       return res.status(200).json(usersPage)
+    } catch (error) {
+      const { statusCode } = error.error
+
+      return res.status(statusCode).json(error)
+    }
+  },
+  async socialLogin(req, res) {
+    try {
+      const {
+        id,
+        name,
+        avatar
+      } = req.body
+
+      return res.status(200).json(await SocialLogin({ id, name, avatar }))
     } catch (error) {
       const { statusCode } = error.error
 

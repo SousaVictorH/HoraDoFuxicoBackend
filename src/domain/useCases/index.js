@@ -6,6 +6,7 @@ const SendSMS = require('./SendSMS')
 const GetUsersPage = require('./GetUsersPage')
 const CreateSchedule = require('./CreateSchedule')
 const GetSchedulesPage = require('./GetSchedulesPage')
+const SocialLogin = require('./SocialLogin')
 
 module.exports = {
   SignUp,
@@ -15,5 +16,6 @@ module.exports = {
   SendSMS,
   GetUsersPage,
   CreateSchedule,
-  GetSchedulesPage
+  GetSchedulesPage,
+  SocialLogin
 }

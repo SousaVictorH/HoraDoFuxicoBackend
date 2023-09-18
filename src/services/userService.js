@@ -8,7 +8,7 @@ const create = async (user) => {
   return UserModel(await UsersDatabase.create(User))
 }
 
-const findOne = async (filters = { _id, phoneNumber }) => {
+const findOne = async (filters = { _id, phoneNumber, socialId }) => {
   const user = await UsersDatabase.findOne(filters)
 
   if (!user) return null

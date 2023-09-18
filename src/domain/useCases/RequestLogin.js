@@ -16,8 +16,6 @@ const RequestLogin = async ({ phoneNumber }) => {
 
   const token = generateToken()
 
-  console.log(token)
-
   // Send sms
   await SendSMS({
     to: phoneNumber,
