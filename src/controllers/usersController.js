@@ -4,7 +4,8 @@ const {
   UpdateUser,
   SignUp,
   GetUsersPage,
-  SocialLogin
+  SocialLogin,
+  VerifyUser
 } = require('../domain/useCases')
 
 module.exports = {
@@ -94,6 +95,17 @@ module.exports = {
       } = req.body
 
       return res.status(200).json(await SocialLogin({ id, name, avatar }))
+    } catch (error) {
+      const { statusCode } = error.error
+
+      return res.status(statusCode).json(error)
+    }
+  },
+  async verifyUser(req, res) {
+    try {
+      const { id } = req.body
+
+      return res.status(200).json(await VerifyUser({ id }))
     } catch (error) {
       const { statusCode } = error.error
 
