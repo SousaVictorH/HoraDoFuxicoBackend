@@ -8,6 +8,7 @@ const CreateSchedule = require('./CreateSchedule')
 const GetSchedulesPage = require('./GetSchedulesPage')
 const SocialLogin = require('./SocialLogin')
 const VerifyUser = require('./VerifyUser')
+const GetSchedule = require('./GetSchedule')
 
 module.exports = {
   SignUp,
@@ -19,5 +20,6 @@ module.exports = {
   CreateSchedule,
   GetSchedulesPage,
   SocialLogin,
-  VerifyUser
+  VerifyUser,
+  GetSchedule
 }

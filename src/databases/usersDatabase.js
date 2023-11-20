@@ -19,11 +19,11 @@ const create = async (user) => {
   }
 }
 
-const findOne = async (filters) => {
+const findOne = async (filters, select) => {
   try {
     objects.removeUndefinedParams(filters)
 
-    return await Users.findOne(filters)
+    return await Users.findOne(filters).select(select)
   } catch (error) {
     throw ServerError({ source, message: failedToReadUser })
   }

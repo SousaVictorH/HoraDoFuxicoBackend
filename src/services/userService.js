@@ -8,8 +8,8 @@ const create = async (user) => {
   return UserModel(await UsersDatabase.create(User))
 }
 
-const findOne = async (filters = { _id, phoneNumber, socialId }) => {
-  const user = await UsersDatabase.findOne(filters)
+const findOne = async (filters = { _id, phoneNumber, socialId }, select) => {
+  const user = await UsersDatabase.findOne(filters, select)
 
   if (!user) return null
 

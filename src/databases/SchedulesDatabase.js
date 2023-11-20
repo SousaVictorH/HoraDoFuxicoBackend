@@ -40,8 +40,13 @@ const find = async ({ userId, select = ['id'] }) => {
   return await Schedules.find(filter).select(select)
 }
 
+const getDetails = async (filter = { _id }) => {
+  return await Schedules.findOne(filter)
+}
+
 module.exports = {
   create,
   getPage,
-  find
+  find,
+  getDetails
 }

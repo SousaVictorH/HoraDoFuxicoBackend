@@ -4,6 +4,7 @@ const singup = require('./signup')
 const login = require('./login')
 const user = require('./user')
 const schedule = require('./schedule')
+const notify = require('./notify')
 
 // RETURNS API VERSION
 router.get('/', (_, res) => {
@@ -14,5 +15,6 @@ router.use('/signup', singup)
 router.use('/login', login)
 router.use('/user', user)
 router.use('/schedule', schedule)
+router.use('/notify', notify)
 
 module.exports = router

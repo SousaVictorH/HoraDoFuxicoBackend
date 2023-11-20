@@ -20,8 +20,13 @@ const getPage = async ({ userId, page, limit }) => {
   }
 }
 
+const getDetails = async (filter = { _id }) => {
+  return ScheduleModel(await SchedulesDatabase.getDetails(filter))
+}
+
 module.exports = {
   create,
   find,
-  getPage
+  getPage,
+  getDetails
 }

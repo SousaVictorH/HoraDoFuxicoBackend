@@ -1,6 +1,7 @@
 const {
   CreateSchedule,
-  GetSchedulesPage
+  GetSchedulesPage,
+  GetSchedule
 } = require('../domain/useCases')
 
 module.exports = {
@@ -34,6 +35,17 @@ module.exports = {
       const Schedule = await CreateSchedule({ userId: id, category, date, time })
 
       return res.status(200).json({ ...Schedule })
+    } catch (error) {
+      const { statusCode } = error.error
+
+      return res.status(statusCode).json(error)
+    }
+  },
+  async get(req, res) {
+    try {
+      const { id } = req.params
+
+      return res.status(200).json(await GetSchedule({ id }))
     } catch (error) {
       const { statusCode } = error.error
 
