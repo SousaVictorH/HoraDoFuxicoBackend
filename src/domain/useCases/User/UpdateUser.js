@@ -1,11 +1,11 @@
 const moment = require('moment')
 
-const UserService = require('../../services/UserService')
+const UserService = require('../../../services/UserService')
 
-const { NotFound, BadRequest } = require('../../helpers/httpResponse')
-const { userNotFound, dataMalformed } = require('../../helpers/messages')
+const { NotFound, BadRequest } = require('../../../helpers/httpResponse')
+const { userNotFound, dataMalformed } = require('../../../helpers/messages')
 
-const { id: { validateId } } = require('../../utils')
+const { id: { validateId } } = require('../../../utils')
 
 const source = 'Update - Use Case'
 

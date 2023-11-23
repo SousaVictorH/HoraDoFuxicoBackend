@@ -1,10 +1,10 @@
 const moment = require('moment')
 
-const UserService = require('../../services/UserService')
-const ScheduleService = require('../../services/ScheduleService')
+const UserService = require('../../../services/UserService')
+const ScheduleService = require('../../../services/ScheduleService')
 
-const { NotFound } = require('../../helpers/httpResponse')
-const { userAlreadyExist } = require('../../helpers/messages')
+const { NotFound } = require('../../../helpers/httpResponse')
+const { userAlreadyExist } = require('../../../helpers/messages')
 
 const source = 'Sign Up - Use Case'
 

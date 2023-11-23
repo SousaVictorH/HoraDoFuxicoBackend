@@ -1,6 +1,6 @@
 const twilio = require('twilio')
 
-const { ACCOUNT_SID, AUTH_TOKEN, PHONE_NUMBER } = require('../../resources/configs/sms')
+const { ACCOUNT_SID, AUTH_TOKEN, PHONE_NUMBER } = require('../../../resources/configs/sms')
 
 const client = twilio(ACCOUNT_SID, AUTH_TOKEN)
 

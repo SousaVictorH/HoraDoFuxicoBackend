@@ -44,9 +44,14 @@ const getDetails = async (filter = { _id }) => {
   return await Schedules.findOne(filter)
 }
 
+const deleteOne = async (filter = { _id }) => {
+  await Schedules.deleteOne(filter)
+}
+
 module.exports = {
   create,
   getPage,
   find,
-  getDetails
+  getDetails,
+  deleteOne
 }

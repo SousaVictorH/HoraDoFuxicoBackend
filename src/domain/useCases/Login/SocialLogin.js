@@ -1,5 +1,5 @@
-const UserService = require('../../services/UserService')
-const { generateToken } = require('../../helpers/token')
+const UserService = require('../../../services/UserService')
+const { generateToken } = require('../../../helpers/token')
 
 const Login = require('./Login')
 

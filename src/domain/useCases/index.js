@@ -1,14 +1,19 @@
-const SignUp = require('./SignUp')
-const Login = require('./Login')
-const UpdateUser = require('./UpdateUser')
-const RequestLogin = require('./RequestLogin')
-const SendSMS = require('./SendSMS')
-const GetUsersPage = require('./GetUsersPage')
-const CreateSchedule = require('./CreateSchedule')
-const GetSchedulesPage = require('./GetSchedulesPage')
-const SocialLogin = require('./SocialLogin')
-const VerifyUser = require('./VerifyUser')
-const GetSchedule = require('./GetSchedule')
+const Login = require('./Login/Login')
+const SocialLogin = require('./Login/SocialLogin')
+const RequestLogin = require('./Login/RequestLogin')
+const VerifyUser = require('./Login/VerifyUser')
+const SignUp = require('./Login/SignUp')
+
+const CreateSchedule = require('./Schedule/CreateSchedule')
+const GetSchedule = require('./Schedule/GetSchedule')
+const Schedule = require('./Schedule/Schedule')
+const CancelSchedule = require('./Schedule/CancelSchedule')
+
+const UpdateUser = require('./User/UpdateUser')
+const SendSMS = require('./User/SendSMS')
+
+const GetUsersPage = require('./Page/GetUsersPage')
+const GetSchedulesPage = require('./Page/GetSchedulesPage')
 
 module.exports = {
   SignUp,
@@ -21,5 +26,7 @@ module.exports = {
   GetSchedulesPage,
   SocialLogin,
   VerifyUser,
-  GetSchedule
+  GetSchedule,
+  Schedule,
+  CancelSchedule
 }

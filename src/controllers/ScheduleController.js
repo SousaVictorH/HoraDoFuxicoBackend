@@ -1,7 +1,9 @@
 const {
   CreateSchedule,
   GetSchedulesPage,
-  GetSchedule
+  GetSchedule,
+  Schedule,
+  CancelSchedule
 } = require('../domain/useCases')
 
 module.exports = {
@@ -41,11 +43,39 @@ module.exports = {
       return res.status(statusCode).json(error)
     }
   },
-  async get(req, res) {
+  async getDetails(req, res) {
     try {
       const { id } = req.params
 
       return res.status(200).json(await GetSchedule({ id }))
+    } catch (error) {
+      const { statusCode } = error.error
+
+      return res.status(statusCode).json(error)
+    }
+  },
+  async schedule(req, res) {
+    try {
+      const {
+        scheduleId,
+        userId
+      } = req.body
+
+      return res.status(200).json(await Schedule({ scheduleId, userId }))
+    } catch (error) {
+      const { statusCode } = error.error
+
+      return res.status(statusCode).json(error)
+    }
+  },
+  async cancel(req, res) {
+    try {
+      const {
+        scheduleId,
+        userId
+      } = req.body
+
+      return res.status(200).json(await CancelSchedule({ scheduleId, userId }))
     } catch (error) {
       const { statusCode } = error.error
 

@@ -1,12 +1,12 @@
-const TokenService = require('../../services/TokenService')
-const SendSMS = require('./SendSMS')
+const TokenService = require('../../../services/TokenService')
+const SendSMS = require('../User/SendSMS')
 
 const {
   token: { generateToken },
   encrypter: { encrypt }
-} = require('../../utils')
+} = require('../../../utils')
 
-const { getAccessTokenText } = require('../../helpers/messages')
+const { getAccessTokenText } = require('../../../helpers/messages')
 
 const RequestLogin = async ({ phoneNumber }) => {
   if (await TokenService.findOne({ phoneNumber })) {

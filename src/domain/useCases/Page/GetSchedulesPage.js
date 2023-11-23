@@ -1,10 +1,10 @@
-const UserService = require('../../services/UserService')
-const ScheduleService = require('../../services/ScheduleService')
+const UserService = require('../../../services/UserService')
+const ScheduleService = require('../../../services/ScheduleService')
 
-const { NotFound, BadRequest } = require('../../helpers/httpResponse')
-const { userNotFound, dataMalformed } = require('../../helpers/messages')
+const { NotFound, BadRequest } = require('../../../helpers/httpResponse')
+const { userNotFound, dataMalformed } = require('../../../helpers/messages')
 
-const { id: { validateId } } = require('../../utils')
+const { id: { validateId } } = require('../../../utils')
 
 const source = 'Get Schedules - Use Case'
 

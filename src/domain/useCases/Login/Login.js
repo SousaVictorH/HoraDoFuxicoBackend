@@ -1,15 +1,15 @@
 const moment = require('moment')
 
-const UserService = require('../../services/UserService')
-const TokenService = require('../../services/TokenService')
-const ScheduleService = require('../../services/ScheduleService')
+const UserService = require('../../../services/UserService')
+const TokenService = require('../../../services/TokenService')
+const ScheduleService = require('../../../services/ScheduleService')
 
-const { encrypter: { compare } } = require('../../utils')
+const { encrypter: { compare } } = require('../../../utils')
 
-const { Unauthorized, Forbidden } = require('../../helpers/httpResponse')
-const { unauthorized, invalidToken } = require('../../helpers/messages')
+const { Unauthorized, Forbidden } = require('../../../helpers/httpResponse')
+const { unauthorized, invalidToken } = require('../../../helpers/messages')
 
-const { generateToken } = require('../../helpers/token')
+const { generateToken } = require('../../../helpers/token')
 
 const source = 'Login - Use Case'
 

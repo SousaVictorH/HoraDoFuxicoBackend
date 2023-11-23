@@ -1,10 +1,10 @@
-const UserService = require('../../services/UserService')
-const ScheduleService = require('../../services/ScheduleService')
+const UserService = require('../../../services/UserService')
+const ScheduleService = require('../../../services/ScheduleService')
 
-const { generateToken } = require('../../helpers/token')
+const { generateToken } = require('../../../helpers/token')
 
-const { BadRequest } = require('../../helpers/httpResponse')
-const { failedToReadUser } = require('../../helpers/messages')
+const { BadRequest } = require('../../../helpers/httpResponse')
+const { failedToReadUser } = require('../../../helpers/messages')
 
 const source = 'Get User'
 
