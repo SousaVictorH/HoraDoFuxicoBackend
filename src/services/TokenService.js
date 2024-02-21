@@ -1,27 +1,27 @@
-const TokensDatabase = require('../databases/TokensDatabase')
+const TokensDatabase = require("../databases/TokensDatabase");
 
-const { TokenModel } = require('../domain/models')
+const { TokenModel } = require("../domain/models");
 
 const create = async (data) => {
-  const Token = TokenModel(data)
+  const Token = TokenModel(data);
 
-  return TokenModel(await TokensDatabase.create(Token))
-}
+  return TokenModel(await TokensDatabase.create(Token));
+};
 
 const findOne = async (filters = { userId, phoneNumber }) => {
-  const token = await TokensDatabase.findOne(filters)
+  const token = await TokensDatabase.findOne(filters);
 
-  if (!token) return null
+  if (!token) return null;
 
-  return TokenModel(token)
-}
+  return TokenModel(token);
+};
 
 const deleteOne = async (filters = { _id, phoneNumber }) => {
-  await TokensDatabase.deleteOne(filters)
-}
+  await TokensDatabase.deleteOne(filters);
+};
 
 module.exports = {
   create,
   findOne,
-  deleteOne
-}
+  deleteOne,
+};

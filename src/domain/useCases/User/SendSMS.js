@@ -1,21 +1,37 @@
-const twilio = require('twilio')
-
-const { ACCOUNT_SID, AUTH_TOKEN, PHONE_NUMBER } = require('../../../resources/configs/sms')
-
-const client = twilio(ACCOUNT_SID, AUTH_TOKEN)
+const { ACCOUNT_ID } = require("../../../resources/configs/sms");
 
 const SendSMS = async ({ to, text }) => {
-  try {
-    const phoneNumber = '+55' + to
+  const headers = new Headers();
 
-    await client.messages.create({
-      body: text,
-      to: phoneNumber,
-      from: PHONE_NUMBER
-    })
-  } catch (err) {
-    console.log('An error occurred when trying to send an SMS')
-  }
-}
+  headers.append("Authorization", `App ${ACCOUNT_ID}`);
+  headers.append("Content-Type", "application/json");
+  headers.append("Accept", "application/json");
 
-module.exports = SendSMS
+  const phoneNumber = "55" + to;
+
+  const raw = JSON.stringify({
+    messages: [
+      {
+        destinations: [{ to: phoneNumber }],
+        from: "ServiceSMS",
+        text: text,
+      },
+    ],
+  });
+
+  const requestOptions = {
+    method: "POST",
+    headers: headers,
+    body: raw,
+    redirect: "follow",
+  };
+
+  fetch(
+    "https://ppvq98.api.infobip.com/sms/2/text/advanced",
+    requestOptions
+  ).catch((error) => {
+    console.log("Failed to send SMS with error: ", error);
+  });
+};
+
+module.exports = SendSMS;

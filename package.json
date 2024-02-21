@@ -25,7 +25,6 @@
     "jsonwebtoken": "^9.0.0",
     "moment": "^2.29.4",
     "mongoose": "^7.2.0",
-    "twilio": "^4.17.0",
     "yup": "^1.2.0"
   },
   "devDependencies": {
